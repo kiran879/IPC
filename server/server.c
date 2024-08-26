@@ -3,6 +3,7 @@
 void* shutdownServer(void*);//extern int exitProgram(char*);
 void* createInfra(void*);
 void* createPipe(void*);
+void* createFifo(void*);
 int init();
 void* (*fptr[NOF])(void*);
 int main()

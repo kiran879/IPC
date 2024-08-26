@@ -10,6 +10,7 @@ int init()
 	fptr[0]=createInfra;
 	//fptr[1]=shutdownServer;
 	fptr[2]=createPipe;
+	fptr[3]=createFifo;
 #ifdef DEBUG
 	printf("%s Ends\n",__func__);  
 #endif

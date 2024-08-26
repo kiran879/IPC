@@ -1,0 +1,90 @@
+#!/bin/bash
+
+ExitProject()
+{
+	exit 0
+}
+
+BuildProject()
+{
+	if(make)
+	then
+		echo "Project Build Successfully"
+	else
+		echo "Error: Project Build Failed"
+		read
+	fi
+}
+RunProject()
+{
+        if(./output $1)
+        then
+                echo "Project Run Successfully"
+        else
+                echo "Error: Project Run Failed"
+                read
+        fi
+}
+
+checkin()
+{
+	for file in $(ls *.h) $(ls *.c)
+	do
+		ci $file
+	done
+}
+checkoutBuild()
+{
+        for file in $(ls *.h,v) $(ls *.c,v)
+        do
+                co $file
+        done
+}
+checkoutDevelopment()
+{
+        for file in $(ls *.h,v) $(ls *.c,v)
+        do
+                co -l $file
+        done
+}
+
+
+mainMenu()
+{
+	echo "MAIN MENU"
+	echo "1: checkin"
+	echo "2: checkout for Build"
+	echo "3: checlout for Developement"
+	echo "4: Build Project"
+	echo "5: Run Project"
+	echo "0: Exit Project"
+	echo "Please enter your choice..."
+	read choice
+	case $choice in
+		1)
+			checkin
+			;;
+		2)
+			checkoutBuild
+			;;
+		3)
+			checkoutDevelopment
+			;;
+		4)
+			BuildProject
+			;;
+		5)
+			RunProject $1
+			;;
+		0)
+			ExitProject
+			;;
+		*)
+			echo "Invalid option"
+			;;
+	esac
+}
+while true
+do
+	mainMenu $1
+done

@@ -54,7 +54,7 @@ mainMenu()
 	echo "MAIN MENU"
 	echo "1: checkin"
 	echo "2: checkout for Build"
-	echo "3: checlout for Developement"
+	echo "3: checkout for Developement"
 	echo "4: Build Project"
 	echo "5: Run Project"
 	echo "0: Exit Project"

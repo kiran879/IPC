@@ -4,6 +4,8 @@ void* shutdownServer(void*);//extern int exitProgram(char*);
 void* createInfra(void*);
 void* createPipe(void*);
 void* createFifo(void*);
+void* createMsgQ(void*);
+void* createSharedM(void*);
 int init();
 void* (*fptr[NOF])(void*);
 int main()

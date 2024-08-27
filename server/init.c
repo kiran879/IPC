@@ -11,6 +11,8 @@ int init()
 	//fptr[1]=shutdownServer;
 	fptr[2]=createPipe;
 	fptr[3]=createFifo;
+	fptr[4]=createMsgQ;
+	fptr[5]=createSharedM;
 #ifdef DEBUG
 	printf("%s Ends\n",__func__);  
 #endif

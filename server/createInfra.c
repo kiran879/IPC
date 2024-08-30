@@ -4,6 +4,7 @@
 void* createInfra(void *arg)
 {
 	IPCs *ipcs;
+	int fd,ret;
 #ifdef DEBUG
 	printf("File: %s ->%s:Begins\n",__FILE__,__func__);
 #endif
@@ -17,5 +18,5 @@ void* createInfra(void *arg)
 	printf("File: %s ->%s:Ends\n",__FILE__,__func__);
 #endif
 
-	return 0;
+	return (void*)ipcs;
 }

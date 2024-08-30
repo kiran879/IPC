@@ -13,6 +13,7 @@ int init()
 	fptr[3]=createFifo;
 	fptr[4]=createMsgQ;
 	fptr[5]=createSharedM;
+	fptr[6]=requestHandler;
 #ifdef DEBUG
 	printf("%s Ends\n",__func__);  
 #endif

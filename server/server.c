@@ -8,6 +8,7 @@ void* createFifo(void*);
 void* createMsgQ(void*);
 void* createSharedM(void*);
 void* requestHandler(void*);
+void* responseHandler(void*);
 int init();
 void* (*fptr[NOF])(void*);
 int main()
@@ -19,6 +20,8 @@ int main()
 	init();
 	ipcs=(IPCs*)(*fptr[0])(0);//createInfra
 	(*fptr[6])((void*)ipcs);//requestHandler
+	sleep(1);
+	(*fptr[7])(0);//responseHandler
 #ifdef DEBUG
 	printf("File:%s ->%s:Ends\n",__FILE__,__func__);
 #endif

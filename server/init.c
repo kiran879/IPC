@@ -14,6 +14,7 @@ int init()
 	fptr[4]=createMsgQ;
 	fptr[5]=createSharedM;
 	fptr[6]=requestHandler;
+	fptr[7]=responseHandler;
 #ifdef DEBUG
 	printf("%s Ends\n",__func__);  
 #endif

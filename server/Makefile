@@ -2,8 +2,8 @@
 CC=gcc
 CF=-c -Wall
 DF=-DDEBUG
-output: server.o init.o createInfra.o createPipe.o createFifo.o createMsgQ.o createSharedM.o requestHandler.o
-	${CC} -o output server.o init.o createInfra.o createPipe.o createFifo.o createMsgQ.o createSharedM.o requestHandler.o
+output: server.o init.o createInfra.o createPipe.o createFifo.o createMsgQ.o createSharedM.o requestHandler.o responseHandler.o
+	${CC} -o output server.o init.o createInfra.o createPipe.o createFifo.o createMsgQ.o createSharedM.o requestHandler.o responseHandler.o
 
 server.o: server.c ../header.h declaration.h dataStructures.h
 	${CC} ${CF} ${DF} server.c
@@ -21,6 +21,8 @@ createSharedM.o: createSharedM.c ../header.h declaration.h dataStructures.h
 	${CC} ${CF} ${DF} createSharedM.c
 requestHandler.o: requestHandler.c ../header.h declaration.h dataStructures.h
 	${CC} ${CF} ${DF} requestHandler.c
+responseHandler.o: responseHandler.c ../header.h declaration.h dataStructures.h
+	${CC} ${CF} ${DF} responseHandler.c
 
 
 clean:

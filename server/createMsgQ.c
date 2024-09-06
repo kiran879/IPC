@@ -4,10 +4,12 @@
 void* createMsgQ(void *arg)
 {
 	int *msgid;
+	key_t key;
 #ifdef DEBUG
 	printf("File: %s ->%s:Begins\n",__FILE__,__func__);
 	msgid=(int*)malloc(sizeof(int));
-	*msgid=msgget((key_t)1,0666|IPC_CREAT);
+	key=ftok("msgQ",msgQKey);
+	*msgid=msgget(key,0666|IPC_CREAT);
 	if(*msgid==-1)
 	{
 		perror("msgget");

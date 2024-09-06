@@ -5,3 +5,9 @@ typedef struct
 	int msgQid;
 	int sharedMid;
 }IPCs;
+typedef struct
+{
+	long int pid;
+	int result;
+}serverResponse;
+

@@ -19,9 +19,12 @@ int main()
 #endif
 	init();
 	ipcs=(IPCs*)(*fptr[0])(0);//createInfra
+	while(1)
+	{
 	(*fptr[6])((void*)ipcs);//requestHandler
 	sleep(1);
 	(*fptr[7])(0);//responseHandler
+	}
 #ifdef DEBUG
 	printf("File:%s ->%s:Ends\n",__FILE__,__func__);
 #endif

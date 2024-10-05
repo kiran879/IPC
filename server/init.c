@@ -15,6 +15,7 @@ int init()
 	fptr[5]=createSharedM;
 	fptr[6]=requestHandler;
 	fptr[7]=responseHandler;
+	fptr[8]=createSemaphore;
 #ifdef DEBUG
 	printf("%s Ends\n",__func__);  
 #endif

@@ -7,6 +7,7 @@ void* createPipe(void*);
 void* createFifo(void*);
 void* createMsgQ(void*);
 void* createSharedM(void*);
+void* createSemaphore(void*);
 void* requestHandler(void*);
 void* responseHandler(void*);
 int init();
@@ -21,6 +22,7 @@ int main()
 	ipcs=(IPCs*)(*fptr[0])(0);//createInfra
 	while(1)
 	{
+	printf("fifoname in server main:%s\n",ipcs->fifoName);
 	(*fptr[6])((void*)ipcs);//requestHandler
 	sleep(1);
 	(*fptr[7])(0);//responseHandler

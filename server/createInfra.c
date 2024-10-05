@@ -14,6 +14,7 @@ void* createInfra(void *arg)
 	ipcs->fifoName=(char*)(*fptr[3])(0);
 	ipcs->msgQid=*(int*)(*fptr[4])(0);
 	ipcs->sharedMid=*(int*)(*fptr[5])(0);
+	ipcs->semID=*(int*)(*fptr[8])(0);
 #ifdef DEBUG
 	printf("File: %s ->%s:Ends\n",__FILE__,__func__);
 #endif

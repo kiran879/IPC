@@ -13,13 +13,13 @@ void* requestHandler(void *arg)
 #ifdef DEBUG
 	printf("File:%s ->%s:Begins\n",__FILE__,__func__);
 #endif
+	ipcs=(IPCs*)(arg);
 	rqst=(request*)malloc(sizeof(request));
 	if(!rqst)
 	{
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
-	ipcs=(IPCs*)(arg);
 	printf("fifo name: %s\n",ipcs->fifoName);
 	rfd=open(ipcs->fifoName,O_RDONLY);
 	if(rfd==-1)
@@ -44,10 +44,10 @@ void* requestHandler(void *arg)
 		perror("read");
  		exit(EXIT_FAILURE);
  	}
-//	close(rfd);
  	printf("%c\n",rqst->ch);
  	printf("Testing %d\n",rqst->a);
  	printf("Testing client pid:%d\n",rqst->pid);
+	sem_post((sem_t*)&ipcs->pSemID);//posix semaphore(pshared value- 0) post operation to proceed main thread in creating new thread 
 
 	if(rqst->ch == '+' || rqst->ch == '-' || rqst->ch == '*' || rqst->ch == '/')
 	{
@@ -107,6 +107,7 @@ void* requestHandler(void *arg)
 #ifdef DEBUG
 	printf("File:%s ->%s:Ends\n",__FILE__,__func__);
 #endif
+//	close(rfd);
 
 	return 0;
 }

@@ -31,16 +31,18 @@ int main()
 	sb[0].sem_num=0;//assigning semaphore number
 	sb[0].sem_op=-1;//Decrement sem val
 	sb[0].sem_flg=0;
-	su.array=val;
-	semctl(semID,0,GETALL,su);
-	printf("sem val:%d and semid:%d\n",val[0],semID);
+	//su.array=val;
+	//semctl(semID,0,GETALL,su);
+//	printf("sem val:%d and semid:%d\n",val[0],semID);
 	//start of critical section(open fifo for write mode)
+//	printf("testing before semop-wait\n");
 	sret=semop(semID,sb,1);//wait operation for sempahore 0
 	if(sret==-1)
 	{
 		perror("semop");
 		exit(EXIT_FAILURE);
 	}
+//	printf("testing after semop-signal\n");
 	fd=open("../server/Fifo",O_WRONLY);
 	if(fd==-1)
 	{
@@ -48,7 +50,7 @@ int main()
 		exit(1);
 	}
 	rqst.pid=getpid();
-	printf("pid in client-%d\n",rqst.pid);
+//	printf("pid in client-%d\n",rqst.pid);
 	wret=write(fd,&rqst,sizeof(request));
 	if(wret==-1)
 	{
@@ -56,6 +58,7 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 	//end of critical section(fifo write)
+//	printf("testing before semop-signal\n");
 	sb[0].sem_op=1;//Increment semaphore
 	sret=semop(semID,sb,1);//signal operation for semaphore 0
 	if(sret==-1)
@@ -63,7 +66,7 @@ int main()
 		perror("semop");
 		exit(EXIT_FAILURE);
 	}
-//	close(fd);
+//	printf("testing after semop-signal\n");
 	key=ftok("msgQ",msgQKey);
 	msgid=msgget(key,0666);
 	ret=msgrcv(msgid,&res,sizeof(res.result),getpid(),0);
@@ -77,5 +80,6 @@ int main()
 	printf("File: %s ->%s:Ends\n",__FILE__,__func__);
 #endif
 
+//	close(fd);
 	return 0;
 }

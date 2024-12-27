@@ -16,6 +16,7 @@ int init()
 	fptr[6]=requestHandler;
 	fptr[7]=responseHandler;
 	fptr[8]=createSemaphore;
+	fptr[9]=createPosixSem;
 #ifdef DEBUG
 	printf("%s Ends\n",__func__);  
 #endif

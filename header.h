@@ -9,4 +9,6 @@
 #include <sys/msg.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
+#include<pthread.h>
+#include<semaphore.h>
 #include<errno.h>
